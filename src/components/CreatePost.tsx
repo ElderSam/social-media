@@ -1,26 +1,36 @@
-import { useActionState, useState } from 'react';
+import { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
+ 
 import './CreatePost.css';
 import { Button, FormTitle, InputGroup, TextAreaGroup } from './Form';
+import { createPost } from '../api/server';
 
 export function CreatePost() {
   const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
-  const [state, formAction, isPending] = useActionState(submitForm, null);
+  // const queryClient = useQueryClient();
 
-  async function submitForm(prevState: any, formData: FormData) {
-    // const username = formData.get('username') as string;
+  const mutation = useMutation({
+    mutationFn: (data: { title: string; content: string }) => {
+      const username = localStorage.getItem('username') || 'Anonymous';
+      return createPost(username, data.title, data.content);
+    },
+    onSuccess: () => {
+      // Automatically refetch posts list
+      // queryClient.invalidateQueries({ queryKey: ['posts'] });
+      setTitle('');
+      setContent('');
+    },
+  });
 
-    // Simulate API call
-    // await saveUsername(username);
-    
-    // Return new state
-    return { success: true };
-    // return { success: true, username };
-  }
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    mutation.mutate({ title, content });
+  };
 
   return (
     <div className='create-post'>
-      <form action={formAction} className="form-container">
+      <form onSubmit={handleSubmit} className="form-container">
 
         <FormTitle text="What’s on your mind?" />
 
@@ -41,9 +51,10 @@ export function CreatePost() {
         />
 
         <Button
-          text={isPending ? 'Creating...' : 'Create'}
-          disabled={isPending || !title.trim() || !content.trim()}
+          text={mutation.isPending ? 'Creating...' : 'Create'}
+          disabled={mutation.isPending || !title.trim() || !content.trim()}
         />
+        {mutation.isError && <p>Error: {mutation.error.message}</p>}
       </form>
     </div>
   )
