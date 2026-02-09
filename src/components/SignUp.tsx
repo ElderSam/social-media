@@ -39,7 +39,7 @@ export default function SignUp(props: SignUpPropsType) {
             setValue={setUsername}
           />
 
-          <Button text={'ENTER'} isPending={isPending} value={username} />
+          <Button text={'ENTER'} isPending={isPending} disabled={isPending || !username.trim()} />
         </form>
 
         {/* {state?.success && <p>Welcome, {localStorage.getItem('username')}!</p>} */}
