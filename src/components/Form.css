@@ -27,6 +27,7 @@
 input, textarea {
   width: 100%;
   box-sizing: border-box;
+  margin-bottom: 24px;
   padding: 8px;
   border-radius: 8px;
   border-width: 1px;
@@ -41,7 +42,6 @@ textarea {
 
 button {
   background: #7695EC;
-  margin-top: 16px;
   border-radius: 8px;
   min-width: 111px;
   align-self: flex-end;
