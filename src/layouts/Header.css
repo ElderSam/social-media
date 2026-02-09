@@ -3,16 +3,14 @@ header {
   display: flex;
   justify-content: start;
   padding: 27px 37px;
-  width: 800px;
+  max-height: 80px;
 
   z-index: 2;
-  position: fixed;
-  left: 50%;
-  transform: translate(-50%, 0);
 }
 
 header > h1 {
   font-weight: 700;
   font-size: 22px;
   color: #FFF;
+  line-height: 26px;
 }

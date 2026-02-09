@@ -1,0 +1,10 @@
+main {
+  padding-top: 80px;
+  background-color: #FFF;
+  height: 120vh;
+  width: 800px;
+
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
