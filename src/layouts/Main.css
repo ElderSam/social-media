@@ -1,8 +1,8 @@
 main {
-  padding-top: 80px;
   background-color: #FFF;
-  height: 120vh;
-  width: 800px;
+  height: 100vh;
+  width: 752px;
+  padding: 24px;
 
   position: fixed;
   left: 50%;
