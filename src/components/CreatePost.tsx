@@ -41,9 +41,8 @@ export function CreatePost() {
         />
 
         <Button
-          text={'Create'}
-          isPending={isPending}
-          disabled={isPending || (!title.trim() || !content.trim())}
+          text={isPending ? 'Creating...' : 'Create'}
+          disabled={isPending || !title.trim() || !content.trim()}
         />
       </form>
     </div>

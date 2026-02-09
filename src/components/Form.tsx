@@ -17,7 +17,6 @@ interface InputProps {
 
 interface ButtonProps {
   text: string;
-  isPending: boolean;
   disabled: boolean;
 }
 
@@ -88,13 +87,13 @@ export function TextArea(props: InputProps) {
   )
 }
 
-export function Button({ text, isPending, disabled }: ButtonProps) {
+export function Button({ text, disabled }: ButtonProps) {
   return (
     <button
       type="submit"
       disabled={disabled}
     >
-      <p>{isPending ? 'LOADING...' : text}</p>
+      <p>{text}</p>
     </button>
   )
 }
