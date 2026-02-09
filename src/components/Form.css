@@ -29,3 +29,26 @@ textarea {
   min-height: 74px;
   min-width: 100%;
 }
+
+button {
+  background: #7695EC;
+  margin-top: 16px;
+  border-radius: 8px;
+  min-width: 111px;
+  align-self: flex-end;
+
+  border: none;
+  cursor: pointer;
+  padding: 7px;
+}
+
+button:disabled {
+  background-color: #CCC;
+  cursor: not-allowed;
+}
+
+button > p {
+  font-weight: 700;
+  font-size: 16px;
+  color: #FFF;
+}

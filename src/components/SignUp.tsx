@@ -2,7 +2,7 @@ import { useActionState, useEffect, useState } from 'react';
 import './SignUp.css';
 import { saveUsername } from '../api/server';
 import type { SignUpPropsType } from '../types/types';
-import { FormTitle, InputGroup } from './Form';
+import { Button, FormTitle, InputGroup } from './Form';
 
 export default function SignUp(props: SignUpPropsType) {
   const [username, setUsername] = useState('');
@@ -39,12 +39,7 @@ export default function SignUp(props: SignUpPropsType) {
             setValue={setUsername}
           />
 
-          <button
-            type="submit"
-            disabled={isPending || !username.trim()}
-          >
-            <p>{isPending ? 'LOADING...' : 'ENTER'}</p>
-          </button>
+          <Button text={'ENTER'} isPending={isPending} value={username} />
         </form>
 
         {/* {state?.success && <p>Welcome, {localStorage.getItem('username')}!</p>} */}

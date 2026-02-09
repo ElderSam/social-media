@@ -15,6 +15,12 @@ interface InputProps {
   setValue: Function;
 }
 
+interface ButtonProps {
+  text: string;
+  isPending: boolean;
+  value: any;
+}
+
 
 export function InputGroup({
     inputTitle,
@@ -79,5 +85,16 @@ export function TextArea(props: InputProps) {
       value={props.value}
       onChange={(e) => props.setValue(e.target.value)}
     />
+  )
+}
+
+export function Button({ text, isPending, value }: ButtonProps) {
+  return (
+    <button
+      type="submit"
+      disabled={isPending || !value.trim()}
+    >
+      <p>{isPending ? 'LOADING...' : text}</p>
+    </button>
   )
 }
