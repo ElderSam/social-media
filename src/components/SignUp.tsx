@@ -37,7 +37,6 @@ export default function SignUp(props: SignUpPropsType) {
             placeholder="John doe"
             value={username}
             setValue={setUsername}
-
           />
 
           <button

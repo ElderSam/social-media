@@ -68,3 +68,16 @@ export function Input(props: InputProps) {
     />
   )
 }
+
+export function TextArea(props: InputProps) {
+  return (
+    <textarea
+      name={props.name}
+      placeholder={props.placeholder}
+      autoFocus
+      required
+      value={props.value}
+      onChange={(e) => props.setValue(e.target.value)}
+    />
+  )
+}
