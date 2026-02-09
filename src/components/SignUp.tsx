@@ -41,7 +41,7 @@ export default function SignUp() {
           </button>
         </form>
 
-        {state?.success && <p>Welcome, {localStorage.getItem('username')}!</p>}
+        {/* {state?.success && <p>Welcome, {localStorage.getItem('username')}!</p>} */}
     </div>
   );
 }
