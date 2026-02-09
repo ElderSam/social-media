@@ -1,9 +1,10 @@
 import Main from "../layouts/Main";
+import { CreatePost } from "../components/CreatePost";
 
-interface props {
-  username: string;
-}
-
-export default function MainPage({ username }: props) {
-  return <Main>Main Page. username: {username}</Main>
+export default function MainPage() {
+  return (
+    <Main>
+      <CreatePost />
+    </Main>
+  );
 }

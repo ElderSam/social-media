@@ -24,7 +24,7 @@ function App() {
 
       {username 
         ? 
-        <MainPage username={username} /> 
+        <MainPage /> 
         : 
         <SignUpPage onSignUp={setUsername} />
       }
