@@ -1,8 +1,9 @@
 import { useActionState, useEffect, useState } from 'react';
 import './SignUp.css';
 import { saveUsername } from '../api/server';
+import type { SignUpPropsType } from '../types/types';
 
-export default function SignUp() {
+export default function SignUp(props: SignUpPropsType) {
   const [username, setUsername] = useState('');
   const [state, formAction, isPending] = useActionState(submitForm, null);
 
@@ -16,6 +17,13 @@ export default function SignUp() {
     // Return new state
     return { success: true, username };
   }
+
+  useEffect(() => {
+    if (state?.success) {
+      localStorage.setItem('username', state.username);
+      props.onSignUp(state.username);
+    }
+  }, [state, props.onSignUp]);
 
   return (
     <div className="modal">
