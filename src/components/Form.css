@@ -1,0 +1,26 @@
+
+.container-title{
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 26px;
+  margin-bottom: 24px;
+  color: #000000;
+}
+
+.input-title {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  margin-bottom: 8px;
+  color: #000;
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px;
+  border-radius: 8px;
+  border-width: 1px;
+  font-weight: 400;
+  font-size: 14px;
+}
