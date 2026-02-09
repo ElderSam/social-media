@@ -54,6 +54,11 @@ button {
   padding: 7px;
 }
 
+button:disabled {
+  background-color: #CCC;
+  cursor: not-allowed;
+}
+
 button > p {
   font-weight: 700;
   font-size: 16px;
