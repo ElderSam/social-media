@@ -23,3 +23,13 @@ export async function createPost(username: string, title: string, content: strin
 
   return response.json();
 }
+
+export async function getPosts() {
+  const response = await fetch(backendURL);
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch posts');
+  }
+
+  return response.json();
+}

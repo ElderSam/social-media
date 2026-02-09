@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
  
 import './CreatePost.css';
 import { Button, FormTitle, InputGroup, TextAreaGroup } from './Form';
@@ -8,7 +8,7 @@ import { createPost } from '../api/server';
 export function CreatePost() {
   const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
-  // const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: (data: { title: string; content: string }) => {
@@ -17,7 +17,7 @@ export function CreatePost() {
     },
     onSuccess: () => {
       // Automatically refetch posts list
-      // queryClient.invalidateQueries({ queryKey: ['posts'] });
+      queryClient.invalidateQueries({ queryKey: ['posts'] });
       setTitle('');
       setContent('');
     },
