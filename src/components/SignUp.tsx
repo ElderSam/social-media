@@ -1,5 +1,6 @@
 import { useActionState, useEffect, useState } from 'react';
 import './SignUp.css';
+import { saveUsername } from '../api/server';
 
 export default function SignUp() {
   const [username, setUsername] = useState('');
@@ -9,22 +10,12 @@ export default function SignUp() {
   async function submitForm(prevState: any, formData: FormData) {
     const username = formData.get('username') as string;
 
-    // Your form submission logic here
-    console.log('Submitting:', username);
     // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await saveUsername(username);
     
     // Return new state
     return { success: true, username };
   }
-
-  useEffect(() => {
-    // React to state changes after form submission
-    if (state?.success) {
-      console.log('Form submitted successfully!', state.username);
-      // Navigate, show message, etc.
-    }
-  }, [state]);
 
   return (
     <div className="modal">
@@ -50,8 +41,7 @@ export default function SignUp() {
           </button>
         </form>
 
-        {/* state contains the return value from submitForm */}
-        {state?.success && <p>Welcome, {state.username}!</p>}
+        {state?.success && <p>Welcome, {localStorage.getItem('username')}!</p>}
     </div>
   );
 }
