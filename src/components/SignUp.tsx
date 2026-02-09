@@ -28,7 +28,7 @@ export default function SignUp(props: SignUpPropsType) {
 
   return (
     <div className="modal">
-        <form action={formAction} className="modal-container">
+        <form action={formAction} className="form-container">
           <FormTitle text="Welcome to CodeLeap network!" />
 
           <InputGroup
