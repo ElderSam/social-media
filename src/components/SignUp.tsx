@@ -8,6 +8,10 @@ export default function SignUp() {
 
           <p className="input-title">Please enter your username</p>
           <input type="text" placeholder="John doe" autoFocus/>
+
+          <button>
+            <p>ENTER</p>
+          </button>
       </div>
     </div>
   );
