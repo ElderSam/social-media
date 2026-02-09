@@ -2,6 +2,7 @@ import { useActionState, useEffect, useState } from 'react';
 import './SignUp.css';
 import { saveUsername } from '../api/server';
 import type { SignUpPropsType } from '../types/types';
+import { FormTitle, InputGroup } from './Form';
 
 export default function SignUp(props: SignUpPropsType) {
   const [username, setUsername] = useState('');
@@ -28,17 +29,15 @@ export default function SignUp(props: SignUpPropsType) {
   return (
     <div className="modal">
         <form action={formAction} className="modal-container">
-          <p className="modal-title">Welcome to CodeLeap network!</p>
+          <FormTitle text="Welcome to CodeLeap network!" />
 
-          <p className="input-title">Please enter your username</p>
-          <input
-            type="text"
-            name="username"
+          <InputGroup
+            inputTitle="Please enter your username"
+            name='username'
             placeholder="John doe"
-            autoFocus
-            required
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            setValue={setUsername}
+
           />
 
           <button
