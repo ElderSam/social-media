@@ -7,7 +7,7 @@ export default function SignUp() {
           <p className="modal-title">Welcome to CodeLeap network!</p>
 
           <p className="input-title">Please enter your username</p>
-          <input type="text" placeholder="John doe" />
+          <input type="text" placeholder="John doe" autoFocus/>
       </div>
     </div>
   );
