@@ -129,7 +129,7 @@ pnpm run build
 
 ## 🛠️ Tech Stack
 
-- **Frontend Framework**: React 18
+- **Frontend Framework**: React 19
 - **Language**: TypeScript
 - **Build Tool**: Vite
 - **State Management**: React Query (TanStack Query)
