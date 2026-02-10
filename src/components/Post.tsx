@@ -1,15 +1,31 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { PostType } from "../types/types";
 import { getRelativeTime } from "../utils/timeUtils";
 import editIcon from '../assets/edit-icon.svg';
 import deleteIcon from '../assets/delete-icon.svg';
 import { DeleteModal } from './DeleteModal';
+import { deletePost } from '../api/server';
 import './Post.css';
 
 export default function Post({ post }: {post: PostType}) {
   const currentUsername = localStorage.getItem('username');
   const isOwnPost = currentUsername === post.username;
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const queryClient = useQueryClient();
+
+  const deleteMutation = useMutation({
+    mutationFn: () => deletePost(post.id),
+    onSuccess: () => {
+      // Refresh posts list
+      queryClient.invalidateQueries({ queryKey: ['posts'] });
+      setShowDeleteModal(false);
+    },
+    onError: (error) => {
+      console.error('Failed to delete post:', error);
+      setShowDeleteModal(false);
+    },
+  });
 
   const handleEdit = () => {
     console.log('Edit post:', post.id);
@@ -21,9 +37,7 @@ export default function Post({ post }: {post: PostType}) {
   };
 
   const confirmDelete = () => {
-    console.log('Deleting post:', post.id);
-    // TODO: Implement actual delete API call
-    setShowDeleteModal(false);
+    deleteMutation.mutate();
   };
 
   const cancelDelete = () => {

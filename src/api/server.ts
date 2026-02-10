@@ -33,3 +33,16 @@ export async function getPosts() {
 
   return response.json();
 }
+
+export async function deletePost(postId: number) {
+  const response = await fetch(`${backendURL}${postId}/`, {
+    method: 'DELETE',
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to delete post');
+  }
+
+  // No content returned from server
+  return;
+}
