@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
  
 import './CreatePost.css';
@@ -6,6 +7,7 @@ import { createPost } from '../api/server';
 
 export function CreatePost() {
   const queryClient= useQueryClient();
+  const [formKey, setFormKey] = useState(0);
 
   const mutation = useMutation({
     mutationFn: (data: { title: string; content: string }) => {
@@ -15,6 +17,8 @@ export function CreatePost() {
     onSuccess: () => {
       // Automatically refetch posts list
       queryClient.invalidateQueries({ queryKey: ['posts'] });
+      // Reset form by changing key
+      setFormKey(prev => prev + 1);
     },
   });
 
@@ -25,6 +29,7 @@ export function CreatePost() {
   return (
     <div className='create-post'>
       <PostForm
+        key={formKey}
         onSubmit={handleSubmit}
         submitButtonText="Create"
         isSubmitting={mutation.isPending}
