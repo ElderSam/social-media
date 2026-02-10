@@ -4,7 +4,7 @@ export function getRelativeTime(dateString: string): string {
   const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
 
   if (diffInSeconds < 60) {
-    return `${diffInSeconds} seconds ago`;
+    return diffInSeconds <= 5 ? 'Now' : `${diffInSeconds} seconds ago`;
   }
 
   const diffInMinutes = Math.floor(diffInSeconds / 60);
