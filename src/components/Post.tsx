@@ -1,12 +1,15 @@
+import { useEffect, useState } from 'react';
 import type { PostType } from "../types/types";
 import { getRelativeTime } from "../utils/timeUtils";
 import editIcon from '../assets/edit-icon.svg';
 import deleteIcon from '../assets/delete-icon.svg';
+import { DeleteModal } from './DeleteModal';
 import './Post.css';
 
 export default function Post({ post }: {post: PostType}) {
   const currentUsername = localStorage.getItem('username');
   const isOwnPost = currentUsername === post.username;
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const handleEdit = () => {
     console.log('Edit post:', post.id);
@@ -14,8 +17,17 @@ export default function Post({ post }: {post: PostType}) {
   };
 
   const handleDelete = () => {
-    console.log('Delete post:', post.id);
-    // TODO: Implement delete functionality
+    setShowDeleteModal(true);
+  };
+
+  const confirmDelete = () => {
+    console.log('Deleting post:', post.id);
+    // TODO: Implement actual delete API call
+    setShowDeleteModal(false);
+  };
+
+  const cancelDelete = () => {
+    setShowDeleteModal(false);
   };
 
   return (
@@ -36,6 +48,10 @@ export default function Post({ post }: {post: PostType}) {
         </span>
       </div>
       <p className="post-content">{post.content}</p>
+      
+      {showDeleteModal && (
+        <DeleteModal onCancel={cancelDelete} onDelete={confirmDelete} />
+      )}
     </div>
   );
 }

@@ -3,6 +3,7 @@ import './SignUp.css';
 import { saveUsername } from '../api/server';
 import type { SignUpPropsType } from '../types/types';
 import { Button, FormTitle, InputGroup } from './Form';
+import { Modal } from './Modal';
 
 export default function SignUp(props: SignUpPropsType) {
   const [username, setUsername] = useState('');
@@ -27,7 +28,7 @@ export default function SignUp(props: SignUpPropsType) {
   }, [state, props.onSignUp]);
 
   return (
-    <div className="modal">
+    <Modal showOverlay={false}>
         <form action={formAction} className="form-container">
           <FormTitle text="Welcome to CodeLeap network!" />
 
@@ -46,6 +47,6 @@ export default function SignUp(props: SignUpPropsType) {
         </form>
 
         {/* {state?.success && <p>Welcome, {localStorage.getItem('username')}!</p>} */}
-    </div>
+    </Modal>
   );
 }

@@ -1,0 +1,46 @@
+.delete-modal-content {
+  width: 612.03px;
+  display: flex;
+  flex-direction: column;
+  gap: 23.05px;
+}
+
+.delete-modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.cancel-button,
+.delete-button {
+  border: none;
+  cursor: pointer;
+  padding: 8px 24px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.cancel-button {
+  background-color: #FFF;
+  color: #000;
+  border: 1px solid #000;
+}
+
+.cancel-button:hover {
+  background-color: #F5F5F5;
+}
+
+.delete-button {
+  background-color: #FF5151;
+  color: #FFF;
+}
+
+.delete-button:hover {
+  background-color: #E04646;
+}
+
+.cancel-button > p,
+.delete-button > p {
+  margin: 0;
+}

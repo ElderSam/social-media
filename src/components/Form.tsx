@@ -17,7 +17,10 @@ interface InputProps {
 
 interface ButtonProps {
   text: string;
-  disabled: boolean;
+  disabled?: boolean;
+  onClick?: () => void;
+  className?: string;
+  type?: 'button' | 'submit';
 }
 
 
@@ -87,11 +90,13 @@ export function TextArea(props: InputProps) {
   )
 }
 
-export function Button({ text, disabled }: ButtonProps) {
+export function Button({ text, disabled = false, onClick, className = '', type = 'submit' }: ButtonProps) {
   return (
     <button
-      type="submit"
+      type={type}
       disabled={disabled}
+      onClick={onClick}
+      className={className}
     >
       <p>{text}</p>
     </button>
