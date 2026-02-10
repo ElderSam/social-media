@@ -1,6 +1,3 @@
-.form-container {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  width: 500px;
+.form-container-singup {
+  width: 404px;
 }
