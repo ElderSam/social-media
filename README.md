@@ -2,6 +2,9 @@
 
 A simple social media application built with React, TypeScript, and Vite.
 
+- [Figma Design & Requirements](https://www.figma.com/design/0OQWLQmU14SF2cDhHPJ2sx/CodeLeap-Engineering-Test?node-id=33054-16&t=nSqM59VMjn9cLv0L-0)
+
+
 ## 📋 Required Features (Implemented)
 
 ### User Authentication
