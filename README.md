@@ -61,6 +61,16 @@ A simple social media application built with React, TypeScript, and Vite.
 - [x] Responsive design matching actual posts
 - [x] Better UX than simple "Loading..." text
 
+### Toast Notifications
+- [x] User feedback for all actions (create, edit, delete)
+- [x] Success notifications (green) for completed actions
+- [x] Error notifications (red) for failed operations
+- [x] Smooth slide-in animations
+- [x] Auto-dismiss after 3 seconds
+- [x] Click to dismiss manually
+- [x] Stacked notifications support (multiple toasts)
+- [x] Mobile-responsive design
+
 ### Coming soon...
 
 ---

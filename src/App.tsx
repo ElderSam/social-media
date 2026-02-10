@@ -3,6 +3,7 @@ import './App.css';
 import Header from './layouts/Header';
 import SignUpPage from './pages/SignUpPage';
 import MainPage from './pages/MainPage';
+import { ToastProvider } from './contexts/ToastContext';
 
 function App() {
   const [username, setUsername] = useState<string | null>(null);
@@ -19,16 +20,18 @@ function App() {
   }
 
   return (
-    <div className='app-container'>
-      {username && <Header />}
+    <ToastProvider>
+      <div className='app-container'>
+        {username && <Header />}
 
-      {username 
-        ? 
-        <MainPage /> 
-        : 
-        <SignUpPage onSignUp={setUsername} />
-      }
-    </div>
+        {username 
+          ? 
+          <MainPage /> 
+          : 
+          <SignUpPage onSignUp={setUsername} />
+        }
+      </div>
+    </ToastProvider>
   );
 }
 

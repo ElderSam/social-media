@@ -7,6 +7,7 @@ import deleteIcon from '../assets/delete-icon.svg';
 import { DeleteModal } from './DeleteModal';
 import { EditPostModal } from './EditPostModal';
 import { deletePost } from '../api/server';
+import { useToast } from '../contexts/ToastContext';
 import './Post.css';
 
 export default function Post({ post }: {post: PostType}) {
@@ -15,6 +16,7 @@ export default function Post({ post }: {post: PostType}) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const queryClient = useQueryClient();
+  const { showToast } = useToast();
 
   const deleteMutation = useMutation({
     mutationFn: () => deletePost(post.id),
@@ -22,10 +24,12 @@ export default function Post({ post }: {post: PostType}) {
       // Refresh posts list
       queryClient.invalidateQueries({ queryKey: ['posts'] });
       setShowDeleteModal(false);
+      showToast('Post deleted successfully!', 'success');
     },
     onError: (error) => {
       console.error('Failed to delete post:', error);
       setShowDeleteModal(false);
+      showToast(`Failed to delete post: ${error.message}`, 'error');
     },
   });
 

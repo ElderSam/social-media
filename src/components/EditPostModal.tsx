@@ -4,6 +4,7 @@ import { PostForm } from './PostForm';
 import { Button } from './Form';
 import { updatePost } from '../api/server';
 import type { PostType } from '../types/types';
+import { useToast } from '../contexts/ToastContext';
 import './EditPostModal.css';
 
 interface EditPostModalProps {
@@ -13,6 +14,7 @@ interface EditPostModalProps {
 
 export function EditPostModal({ post, onClose }: EditPostModalProps) {
   const queryClient = useQueryClient();
+  const { showToast } = useToast();
 
   const mutation = useMutation({
     mutationFn: ({ title, content }: { title: string; content: string }) =>
@@ -20,7 +22,11 @@ export function EditPostModal({ post, onClose }: EditPostModalProps) {
     onSuccess: () => {
       // Refresh posts list
       queryClient.invalidateQueries({ queryKey: ['posts'] });
+      showToast('Post updated successfully!', 'success');
       onClose();
+    },
+    onError: (error) => {
+      showToast(`Failed to update post: ${error.message}`, 'error');
     },
   });
 
@@ -48,9 +54,6 @@ export function EditPostModal({ post, onClose }: EditPostModalProps) {
             />
           }
         />
-        {mutation.isError && (
-          <p className="error-message">Error: {mutation.error.message}</p>
-        )}
       </div>
     </Modal>
   );
