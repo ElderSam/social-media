@@ -71,6 +71,16 @@ A simple social media application built with React, TypeScript, and Vite.
 - [x] Stacked notifications support (multiple toasts)
 - [x] Mobile-responsive design
 
+### Pretty Animations & Transitions
+- [x] Post entrance animations (smooth fade-in with upward slide)
+- [x] Interactive button effects (lift on hover with shadow)
+- [x] Icon hover animations (scale and rotation effects)
+- [x] Input focus states (border color and subtle glow)
+- [x] Modal transitions (fade-in overlay, scale-in content)
+- [x] Create post container animation (slide-down on mount)
+- [x] Smooth transitions throughout the app
+- [x] Professional polish without affecting performance
+
 ### Coming soon...
 
 ---
