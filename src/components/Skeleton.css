@@ -1,0 +1,112 @@
+.post-skeleton {
+  background-color: #FFF;
+  border: 1px solid #999999;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.skeleton-header {
+  background-color: #7695EC;
+  padding: 23.02px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.skeleton-title {
+  height: 22px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  width: 60%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-meta {
+  display: flex;
+  justify-content: space-between;
+  padding: 24px;
+  padding-bottom: 16px;
+  gap: 16px;
+}
+
+.skeleton-username,
+.skeleton-date {
+  height: 18px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-username {
+  width: 120px;
+}
+
+.skeleton-date {
+  width: 100px;
+}
+
+.skeleton-content {
+  padding: 0 24px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeleton-line {
+  height: 16px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-line:nth-child(1) {
+  width: 100%;
+  animation-delay: 0.1s;
+}
+
+.skeleton-line:nth-child(2) {
+  width: 95%;
+  animation-delay: 0.2s;
+}
+
+.skeleton-line.short {
+  width: 70%;
+  animation-delay: 0.3s;
+}
+
+@keyframes shimmer {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .skeleton-header {
+    padding: 16px;
+  }
+
+  .skeleton-meta {
+    padding: 16px;
+    padding-bottom: 12px;
+    flex-wrap: wrap;
+  }
+
+  .skeleton-content {
+    padding: 0 16px 16px 16px;
+    gap: 10px;
+  }
+
+  .skeleton-username,
+  .skeleton-date {
+    height: 16px;
+  }
+
+  .skeleton-line {
+    height: 14px;
+  }
+}

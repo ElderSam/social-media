@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 import { getPosts } from '../api/server';
 import './PostList.css';
 import Post from './Post';
+import { SkeletonList } from './Skeleton';
 import type { PostType, PaginatedResponse } from '../types/types';
 
 export function PostList() {
@@ -50,7 +51,11 @@ export function PostList() {
   }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   if (isLoading) {
-    return <div className="post-list-loading">Loading posts...</div>;
+    return (
+      <div className="post-list">
+        <SkeletonList count={3} />
+      </div>
+    );
   }
 
   if (isError) {
@@ -74,7 +79,7 @@ export function PostList() {
           {hasNextPage && (
             <div ref={loadMoreRef} className="load-more-trigger">
               {isFetchingNextPage ? (
-                <div className="loading-more">Loading more posts...</div>
+                <SkeletonList count={2} />
               ) : (
                 <div className="scroll-indicator">Scroll for more</div>
               )}

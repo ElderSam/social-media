@@ -53,6 +53,14 @@ A simple social media application built with React, TypeScript, and Vite.
 - [x] "End of posts" indicator when all posts are loaded
 - [x] Optimized performance with React Query's `useInfiniteQuery`
 
+### Skeleton Loaders
+- [x] Professional loading placeholders that mimic post structure
+- [x] Smooth shimmer animation effect
+- [x] Shown during initial page load
+- [x] Also displayed when loading more posts (infinite scroll)
+- [x] Responsive design matching actual posts
+- [x] Better UX than simple "Loading..." text
+
 ### Coming soon...
 
 ---
