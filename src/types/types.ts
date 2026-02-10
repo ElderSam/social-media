@@ -9,3 +9,10 @@ export interface PostType {
   title: string;
   content: string;
 }
+
+export interface PaginatedResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: PostType[];
+}

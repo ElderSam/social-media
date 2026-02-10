@@ -24,8 +24,9 @@ export async function createPost(username: string, title: string, content: strin
   return response.json();
 }
 
-export async function getPosts() {
-  const response = await fetch(backendURL);
+export async function getPosts(offset: number = 0, limit: number = 10) {
+  const url = `${backendURL}?offset=${offset}&limit=${limit}`;
+  const response = await fetch(url);
 
   if (!response.ok) {
     throw new Error('Failed to fetch posts');

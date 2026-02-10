@@ -43,6 +43,20 @@ A simple social media application built with React, TypeScript, and Vite.
 
 ---
 
+## 🎁 Bonus Features
+
+### Infinite Scroll
+- [x] Automatic loading of more posts as you scroll
+- [x] Pagination using API offset/limit parameters
+- [x] Intersection Observer API for smooth detection
+- [x] Loading indicator while fetching next page
+- [x] "End of posts" indicator when all posts are loaded
+- [x] Optimized performance with React Query's `useInfiniteQuery`
+
+### Coming soon...
+
+---
+
 ## 🚀 Getting Started
 
 ### Prerequisites

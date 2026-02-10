@@ -1,14 +1,53 @@
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { useEffect, useRef } from 'react';
 import { getPosts } from '../api/server';
 import './PostList.css';
 import Post from './Post';
-import type { PostType } from '../types/types';
+import type { PostType, PaginatedResponse } from '../types/types';
 
 export function PostList() {
-  const { data, isLoading, isError, error } = useQuery({
+  const loadMoreRef = useRef<HTMLDivElement>(null);
+
+  const {
+    data,
+    isLoading,
+    isError,
+    error,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery<PaginatedResponse>({
     queryKey: ['posts'],
-    queryFn: getPosts,
+    queryFn: ({ pageParam = 0 }) => getPosts(pageParam as number, 10),
+    getNextPageParam: (lastPage) => {
+      // If there's a next page, calculate the next offset
+      if (lastPage.next) {
+        const url = new URL(lastPage.next);
+        const offset = url.searchParams.get('offset');
+        return offset ? parseInt(offset) : undefined;
+      }
+      return undefined;
+    },
+    initialPageParam: 0,
   });
+
+  // Intersection Observer for infinite scroll
+  useEffect(() => {
+    if (!loadMoreRef.current || !hasNextPage || isFetchingNextPage) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          fetchNextPage();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(loadMoreRef.current);
+
+    return () => observer.disconnect();
+  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   if (isLoading) {
     return <div className="post-list-loading">Loading posts...</div>;
@@ -18,16 +57,34 @@ export function PostList() {
     return <div className="post-list-error">Error: {error.message}</div>;
   }
 
-  const posts: PostType[] = data?.results || [];
+  // Flatten all pages into a single array
+  const posts: PostType[] = data?.pages.flatMap((page) => page.results) || [];
 
   return (
     <div className="post-list">
       {posts.length === 0 ? (
         <p>No posts yet. Be the first to create one!</p>
       ) : (
-        posts.map((post) => (
-          <Post post={post} />
-        ))
+        <>
+          {posts.map((post) => (
+            <Post key={post.id} post={post} />
+          ))}
+          
+          {/* Load more trigger */}
+          {hasNextPage && (
+            <div ref={loadMoreRef} className="load-more-trigger">
+              {isFetchingNextPage ? (
+                <div className="loading-more">Loading more posts...</div>
+              ) : (
+                <div className="scroll-indicator">Scroll for more</div>
+              )}
+            </div>
+          )}
+
+          {!hasNextPage && posts.length > 0 && (
+            <div className="end-of-posts">You've reached the end!</div>
+          )}
+        </>
       )}
     </div>
   );
