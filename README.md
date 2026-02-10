@@ -81,6 +81,15 @@ A simple social media application built with React, TypeScript, and Vite.
 - [x] Smooth transitions throughout the app
 - [x] Professional polish without affecting performance
 
+### Search & Filter
+- [x] Real-time search across posts
+- [x] Filter by title, content, or username
+- [x] Debounced input (300ms) for optimal performance
+- [x] Clear search button for easy reset
+- [x] Helpful empty state messages
+- [x] Search highlighting in UI
+- [x] Responsive search bar design
+
 ### Coming soon...
 
 ---

@@ -1,13 +1,15 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { getPosts } from '../api/server';
 import './PostList.css';
 import Post from './Post';
 import { SkeletonList } from './Skeleton';
+import { SearchBar } from './SearchBar';
 import type { PostType, PaginatedResponse } from '../types/types';
 
 export function PostList() {
   const loadMoreRef = useRef<HTMLDivElement>(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const {
     data,
@@ -63,12 +65,24 @@ export function PostList() {
   }
 
   // Flatten all pages into a single array
-  const posts: PostType[] = data?.pages.flatMap((page) => page.results) || [];
+  const allPosts: PostType[] = data?.pages.flatMap((page) => page.results) || [];
+
+  // Filter posts based on search query
+  const posts = allPosts.filter((post) => {
+    if (!searchQuery.trim()) return true;
+    const query = searchQuery.toLowerCase();
+    return (
+      post.title.toLowerCase().includes(query) ||
+      post.content.toLowerCase().includes(query) ||
+      post.username.toLowerCase().includes(query)
+    );
+  });
 
   return (
     <div className="post-list">
+      <SearchBar onSearch={setSearchQuery} placeholder="Search by title, content, or username..." />
       {posts.length === 0 ? (
-        <p>No posts yet. Be the first to create one!</p>
+        <p>{searchQuery ? 'No posts found matching your search.' : 'No posts yet. Be the first to create one!'}</p>
       ) : (
         <>
           {posts.map((post) => (
