@@ -4,6 +4,8 @@
   gap: 24px;
   margin-top: 24px;
   margin-bottom: 124px;
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 .post-list-loading,
@@ -11,4 +13,17 @@
   text-align: center;
   padding: 24px;
   color: #666;
+}
+
+@media (max-width: 768px) {
+  .post-list {
+    gap: 16px;
+    margin-top: 16px;
+    margin-bottom: 80px;
+  }
+
+  .post-list-loading,
+  .post-list-error {
+    padding: 16px;
+  }
 }

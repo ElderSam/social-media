@@ -3,4 +3,13 @@
   border-radius: 16px;
   border-width: 1px;
   padding: 24px;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .create-post {
+    padding: 16px;
+    width: 100%;
+  }
 }

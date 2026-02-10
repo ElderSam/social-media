@@ -9,3 +9,20 @@
 .edit-post-form {
   width: 612px;
 }
+
+@media (max-width: 768px) {
+  .edit-post-form {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .post-form-buttons {
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+
+  .post-form-buttons button {
+    width: 100%;
+    align-self: stretch;
+  }
+}

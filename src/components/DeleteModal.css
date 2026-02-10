@@ -1,14 +1,35 @@
 .delete-modal-content {
   width: 612.03px;
+  max-width: 90vw;
   display: flex;
   flex-direction: column;
   gap: 23.05px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .delete-modal-content {
+    width: 100%;
+    max-width: calc(100vw - 32px);
+    gap: 16px;
+  }
 }
 
 .delete-modal-buttons {
   display: flex;
   justify-content: flex-end;
   gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .delete-modal-buttons {
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+
+  .delete-modal-buttons button {
+    width: 100%;
+  }
 }
 
 .cancel-button,

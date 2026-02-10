@@ -1,6 +1,8 @@
 .edit-post-modal {
   background: white;
   border-radius: 8px;
+  box-sizing: border-box;
+  max-width: 100%;
   /* max-width: 600px; */
 }
 
@@ -26,4 +28,10 @@
 .edit-post-modal .error-message {
   color: #ef4444;
   margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .edit-post-modal {
+    padding: 0;
+  }
 }
