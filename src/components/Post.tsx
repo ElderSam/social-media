@@ -5,6 +5,7 @@ import { getRelativeTime } from "../utils/timeUtils";
 import editIcon from '../assets/edit-icon.svg';
 import deleteIcon from '../assets/delete-icon.svg';
 import { DeleteModal } from './DeleteModal';
+import { EditPostModal } from './EditPostModal';
 import { deletePost } from '../api/server';
 import './Post.css';
 
@@ -12,6 +13,7 @@ export default function Post({ post }: {post: PostType}) {
   const currentUsername = localStorage.getItem('username');
   const isOwnPost = currentUsername === post.username;
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const queryClient = useQueryClient();
 
   const deleteMutation = useMutation({
@@ -28,8 +30,7 @@ export default function Post({ post }: {post: PostType}) {
   });
 
   const handleEdit = () => {
-    console.log('Edit post:', post.id);
-    // TODO: Implement edit functionality
+    setShowEditModal(true);
   };
 
   const handleDelete = () => {
@@ -65,6 +66,10 @@ export default function Post({ post }: {post: PostType}) {
       
       {showDeleteModal && (
         <DeleteModal onCancel={cancelDelete} onDelete={confirmDelete} />
+      )}
+      
+      {showEditModal && (
+        <EditPostModal post={post} onClose={() => setShowEditModal(false)} />
       )}
     </div>
   );

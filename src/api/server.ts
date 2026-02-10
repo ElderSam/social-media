@@ -46,3 +46,20 @@ export async function deletePost(postId: number) {
   // No content returned from server
   return;
 }
+
+export async function updatePost(postId: number, title: string, content: string) {
+  const response = await fetch(`${backendURL}${postId}/`, {
+    method: 'PATCH',
+    headers,
+    body: JSON.stringify({
+      title,
+      content,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to update post');
+  }
+
+  return response.json();
+}

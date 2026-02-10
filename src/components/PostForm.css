@@ -1,0 +1,11 @@
+.post-form-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  align-self: flex-end;
+  width: 100%;
+}
+
+.edit-post-form {
+  width: 612px;
+}
