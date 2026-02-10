@@ -90,6 +90,15 @@ A simple social media application built with React, TypeScript, and Vite.
 - [x] Search highlighting in UI
 - [x] Responsive search bar design
 
+### Error Boundaries
+- [x] Graceful error handling throughout the app
+- [x] Fallback UI for component crashes
+- [x] Try Again functionality to recover from errors
+- [x] Nested error boundaries for granular error isolation
+- [x] PostList wrapped separately to protect CreatePost
+- [x] User-friendly error messages
+- [x] Console logging for debugging
+
 ### Coming soon...
 
 ---

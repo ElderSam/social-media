@@ -4,6 +4,7 @@ import Header from './layouts/Header';
 import SignUpPage from './pages/SignUpPage';
 import MainPage from './pages/MainPage';
 import { ToastProvider } from './contexts/ToastContext';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 function App() {
   const [username, setUsername] = useState<string | null>(null);
@@ -20,18 +21,20 @@ function App() {
   }
 
   return (
-    <ToastProvider>
-      <div className='app-container'>
-        {username && <Header />}
+    <ErrorBoundary>
+      <ToastProvider>
+        <div className='app-container'>
+          {username && <Header />}
 
-        {username 
-          ? 
-          <MainPage /> 
-          : 
-          <SignUpPage onSignUp={setUsername} />
-        }
-      </div>
-    </ToastProvider>
+          {username 
+            ? 
+            <MainPage /> 
+            : 
+            <SignUpPage onSignUp={setUsername} />
+          }
+        </div>
+      </ToastProvider>
+    </ErrorBoundary>
   );
 }
 
