@@ -6,9 +6,29 @@
 
 .post-header {
   background-color: #7695EC;
-  padding: 24px;
+  padding: 23.02px;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.action-icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.action-icon:hover {
+  opacity: 0.7;
 }
 
 .post-title {
@@ -16,7 +36,7 @@
   font-size: 22px;
   color: #FFF;
   margin: 0;
-  line-height: 22.02px
+  line-height: 0px;
 }
 
 .post-meta {
