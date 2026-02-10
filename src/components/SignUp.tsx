@@ -10,7 +10,7 @@ export default function SignUp(props: SignUpPropsType) {
   const [state, formAction, isPending] = useActionState(submitForm, null);
 
 
-  async function submitForm(prevState: any, formData: FormData) {
+  async function submitForm(_: any, formData: FormData) {
     const username = formData.get('username') as string;
 
     // Simulate API call
